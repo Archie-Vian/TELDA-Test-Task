@@ -10,10 +10,18 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 import javax.sql.DataSource;
 
+/**
+ * Конфигурация взаимодействия MyBatis с базой данных.
+ */
 @Configuration
 @MapperScan("ru.telda.teldatesttask.repository.mapper")
 public class PersistenceConfig {
 
+	/**
+	 * Инициализация встроенной базы данных.
+	 *
+	 * @return Источник данных
+	 */
 	@Bean
 	public DataSource dataSource() {
 		return new EmbeddedDatabaseBuilder()
@@ -24,6 +32,12 @@ public class PersistenceConfig {
 				.build();
 	}
 
+	/**
+	 * Настройка взаимодействия ORM с базой данных.
+	 *
+	 * @return				Фабрика SQL запросов
+	 * @throws Exception 	Возможные ошибки
+	 */
 	@Bean
 	public SqlSessionFactory sqlSessionFactory() throws Exception {
 		SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
