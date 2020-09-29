@@ -102,8 +102,12 @@ public class RegionServiceImpl implements RegionService {
 			regionOnUpdate.setCode(updatedEntity.getCode());
 		}
 
-		regionMapper.updateRegion(regionOnUpdate.getName(), regionOnUpdate.getCode(), regionOnUpdate.getId());
-
+		try {
+			regionMapper.updateRegion(regionOnUpdate.getName(), regionOnUpdate.getCode(), regionOnUpdate.getId());
+		} catch (DuplicateKeyException e) {
+			throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
+					"Регион с указаным именем или ключом уже существует!");
+		}
 		if (isUpdated) {
 			log.info("Произведено обновление записи с Id {} в таблице region", id);
 		}
