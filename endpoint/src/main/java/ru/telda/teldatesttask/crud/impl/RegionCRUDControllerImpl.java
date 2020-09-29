@@ -37,7 +37,7 @@ public class RegionCRUDControllerImpl implements RegionCRUDController {
 	@Override
 	public ResponseEntity create(Region region) {
 		regionService.create(region);
-		return new ResponseEntity(HttpStatus.OK);
+		return new ResponseEntity(HttpStatus.CREATED);
 	}
 
 	/**
