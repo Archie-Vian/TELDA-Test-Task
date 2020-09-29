@@ -108,6 +108,7 @@ public class RegionServiceImpl implements RegionService {
 			throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
 					"Регион с указаным именем или ключом уже существует!");
 		}
+
 		if (isUpdated) {
 			log.info("Произведено обновление записи с Id {} в таблице region", id);
 		}
